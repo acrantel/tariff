@@ -1,9 +1,16 @@
 export enum Sender {
   React,
-  Content
+  Content,
+  Background,
 }
 
 export interface ChromeMessage {
-  from: Sender,
-  message: any
+  from: Sender;
+  message: any;
+}
+
+export interface Product {
+  link: string;
+  name: string;
+  price: number;
 }
