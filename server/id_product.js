@@ -1,7 +1,8 @@
 const puppeteer = require('puppeteer');
 const cheerio = require('cheerio');
+const CronJob = require('cron').CronJob;
 
-const url = 'https://www.amazon.com/Gillette-Venus-ComfortGlide-White-Womens/dp/B07N6W7RPC/';
+const url = 'https://www.amazon.com/Gillette-Venus-ComfortGlide-White-Womens/dp/B07N6W7RPC/'; 
 
 async function configureBrowser() {
     const browser = await puppeteer.launch();
@@ -24,9 +25,20 @@ async function checkName(page) {
     //id: productTitle
 }
 
-async function monitor() {
-    let page = await configureBrowser();
-    await checkName(page);
+async function startTracking() {
+    const page = await configureBrowser();
+
+    let job = new CronJob('*/15 * * * * *', function() {
+        checkName(page);
+    }, null, true, null, null, true);
+    job.start();
 }
 
-monitor();
+startTracking();
+
+// async function monitor() {
+//     let page = await configureBrowser();
+//     await checkName(page);
+// }
+
+// monitor();
