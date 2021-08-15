@@ -60,9 +60,9 @@ const App = () => {
   const highestPrice = priceList && Math.max(...priceList);
   const calculateBadgeColor = (price: number): string => {
     if (price * 1.2 > highestPrice) {
-      return "#f2d346"; // yellow
+      return "#f48fb1"; // light pink for high prices
     } else {
-      return "#3fd47f"; // green
+      return "#fce4ec"; // dark pink for low prices
     }
   };
 

@@ -1,3 +1,5 @@
+import { getWebsiteNameFromLink } from "../utils";
+
 const PriceBadge = ({ price, badgeColor }: { price: number; badgeColor: string }): JSX.Element => {
   return (
     <div
@@ -22,15 +24,17 @@ const ProductCard = ({
   price: number;
   badgeColor: string;
 }): JSX.Element => {
+  const websiteName = getWebsiteNameFromLink(link);
   return (
     <div
       style={{
         margin: "5px 25px",
       }}
     >
-      <a href={link}>
+      <a href={link} target="_blank">
         <div className="product-card">
-          <span style={{ margin: "5px 5px" }}>{name}</span>
+          <span className="product-card-name">{name}</span>
+          <span className="product-card-website-name">{websiteName ? `(${websiteName})` : ""}</span>
           <PriceBadge price={price} badgeColor={badgeColor} />
         </div>
       </a>
