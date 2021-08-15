@@ -26,7 +26,10 @@ const scrape = async (searchTerm) => {
     (items) => items.map((item) => item.textContent)
   );
 
-  assert(searchPrices.length === searchProducts.length);
+  assert(
+    searchPrices.length === searchProducts.length,
+    `${searchPrices.length}, ${searchProducts.length}`
+  );
 
   const result = [];
   for (let i = 0; i < searchPrices.length; i++) {
@@ -34,15 +37,15 @@ const scrape = async (searchTerm) => {
     const name = searchProducts[i];
     result.push({ price, name });
   }
-  console.log(result);
+  //console.log(result);
 
   await browser.close();
   return result;
 };
 
 // testing code
-// scrape("razor for men").then((value) => {
-//   console.log(value);
-// });
+scrape("razor for men").then((value) => {
+  console.log(value);
+});
 
 module.exports.scrape = scrape;

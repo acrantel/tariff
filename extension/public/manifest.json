@@ -1,6 +1,6 @@
 {
-  "name": "Hello Extensions",
-  "description": "Base Level Extension",
+  "name": "Tariff",
+  "description": "Fight against the pink tax",
   "version": "1.0",
   "manifest_version": 2,
   "browser_action": {

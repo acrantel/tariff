@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Archivo:wght@100;200;300;400;500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Archivo:wght@100;200;300;400;500&family=Monoton&family=Combo&display=swap");
 
 :root {
   --dark-gray: #d0d0d0;
@@ -20,12 +20,15 @@
   width: 100%;
   height: 50;
   justify-content: space-between;
+  align-items: center;
 }
 
 .logo {
-  width: 26px;
-  height: 26px;
-  margin: 22px;
+  height: 40px;
+  margin: 10px 20px;
+  font-size: x-large;
+  text-align: center;
+  font-family: "Monoton", sans-serif;
 }
 
 .close-popup-button-wrapper {
@@ -40,11 +43,13 @@
   flex-direction: column;
   align-items: center;
   width: 100%;
+  font-weight: 200;
+  color: #303030;
 }
 .mascot-happy {
-  width: 60px;
-  height: 60px;
-  margin: 10px;
+  width: 140px;
+  height: 140px;
+  margin: 2px;
 }
 .title-under-mascot {
   font-size: 24px;

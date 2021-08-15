@@ -2,10 +2,9 @@ const express = require("express");
 const app = express();
 const scraper = require("./scrape");
 
-app.use(express.json());
-
 app.get("/", async (req, res) => {
-  const keyword = req.body.keyword;
+  const keyword = req.query.keyword;
+  console.log("keyword: ", keyword);
   res.json({
     product_list: await scraper.scrape(keyword + " for men"),
   });
