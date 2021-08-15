@@ -9,7 +9,7 @@
     "puppeteer": "^10.2.0"
   },
   "scripts": {
-    "idk": "node server.js",
+    "start": "node server.js",
     "testsearch": "node product_search.js"
   }
 }
