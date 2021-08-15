@@ -1,0 +1,125 @@
+@import url("https://fonts.googleapis.com/css2?family=Archivo:wght@100;200;300;400;500&display=swap");
+
+:root {
+  --dark-gray: #d0d0d0;
+  --light-gray: #f0f0f0;
+}
+
+.app {
+  display: "flex";
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 350px;
+  height: 550px;
+  font-family: "Archivo", sans-serif;
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 50;
+  justify-content: space-between;
+}
+
+.logo {
+  width: 26px;
+  height: 26px;
+  margin: 22px;
+}
+
+.close-popup-button-wrapper {
+  margin: 20px;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.product-found {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+.mascot-happy {
+  width: 60px;
+  height: 60px;
+  margin: 10px;
+}
+.title-under-mascot {
+  font-size: 24px;
+}
+
+hr {
+  margin: 7px 25px;
+  border: none;
+  height: 1px;
+  background-color: var(--dark-gray);
+}
+
+.product-list {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+/* product card stuff */
+.price-badge {
+  align-self: center;
+  border-radius: 6px;
+  justify-content: center;
+  padding: 3px 6px;
+  min-width: fit-content;
+  margin: 5px 5px;
+}
+
+.product-card {
+  font-size: 13px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  border-radius: 6px;
+  margin: 1px 0px;
+}
+
+.product-card:hover {
+  border-top: 1px solid pink;
+  border-bottom: 1px solid pink;
+  margin: 0px 0px;
+}
+
+.product-card-name {
+  margin: 5px 5px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.product-card-website-name {
+  margin: 5px 5px;
+  min-width: fit-content;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+/* footer stuff */
+.footer {
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  min-height: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+.footer-text {
+  font-size: 10px;
+  padding-bottom: 15px;
+  padding-left: 30px;
+  padding-right: 30px;
+  text-align: center;
+}
