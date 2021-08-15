@@ -1,6 +1,5 @@
 const puppeteer = require("puppeteer");
-const cheerio = require("cheerio");
-const fs = require("fs");
+const { assert } = require("console");
 
 const url = "https://www.amazon.com/";
 
@@ -22,31 +21,24 @@ async function searchValue(value, page) {
   await timeout(2000);
   await page.screenshot({ path: "example.png" });
 
-  const result = await page.$$eval("#a-page", (productWidgets) => {
-    productWidgets.reduce((accum, curVal) => {
-      const priceStr = curVal.querySelector(
-        "span.a-price > span.a-offscreen"
-      ).textContent;
-
-      const name = curVal.querySelector(
-        "div.a-section > h2.a-size-mini > a.a-link-normal > span.a-size-base-plus"
-      ).textContent;
-
-      accum.push({
-        price: priceStr.replace("$", ""),
-        name,
-      });
-      return accum;
-    }, []);
-  });
   const searchPrices = await page.$$eval(
-    "div.a-row > a.a-size-base > span.a-price > span.a-offscreen",
+    "div.a-row > a.a-size-base > span.a-price:not(.a-text-price) > span.a-offscreen",
     (items) => items.map((item) => item.textContent)
   );
-  console.log("kkk", searchPrices);
-  console.log(result);
-  console.log("klsdjf");
+  const searchProducts = await page.$$eval(
+    "div.a-section > h2.a-size-mini > a.a-link-normal > span.a-size-base-plus",
+    (items) => items.map((item) => item.textContent)
+  );
 
+  assert(searchPrices.length === searchProducts.length);
+
+  const result = [];
+  for (let i = 0; i < searchPrices.length; i++) {
+    const price = parseFloat(searchPrices[i].replace("$", ""));
+    const name = searchProducts[i];
+    result.push({ price, name });
+  }
+  console.log(result);
   return result;
 
   // let html = await page.evaluate(() => document.body.innerHTML);
