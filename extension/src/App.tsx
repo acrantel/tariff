@@ -19,7 +19,7 @@ const App = () => {
     if (newKeyword !== keyword) {
       setKeyword(newKeyword);
     }
-    setProductList(await getSuggestedProducts(keyword));
+    setProductList(await getSuggestedProducts(keyword, false));
   };
 
   // set up listening to port of background script
@@ -69,12 +69,7 @@ const App = () => {
   return (
     <div className="app">
       <div className="header">
-        <img
-          src={"./logo192.png"}
-          className="logo"
-          style={{ width: "30px", height: "30px", margin: "15px" }}
-          alt="logo"
-        />
+        <div className="logo">Tariff</div>
         <div
           className="close-popup-button-wrapper"
           onClick={() => {
@@ -89,7 +84,7 @@ const App = () => {
         </div>
       </div>
       <div className="product-found">
-        <img src={"./logo192.png"} className="mascot-happy" alt="product found" />
+        <img src={"./heart_thing_2.svg"} className="mascot-happy" alt="product found" />
         <div className="title-under-mascot">Products found!</div>
       </div>
       <hr />
