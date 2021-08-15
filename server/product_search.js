@@ -19,30 +19,31 @@ async function searchValue(value, page) {
   //enters value into search box
   await page.type("#twotabsearchtextbox", value);
   await page.$eval("#nav-search-submit-button", (form) => form.click());
+  await timeout(2000);
   await page.screenshot({ path: "example.png" });
 
-  const result = [];
-  await page.$$eval(
-    "div.s-result-item > div.sg-col-inner",
-    (productWidgets) => {
-      productWidgets.forEach((product) => {
-        const cheerioProduct = cheerio.load(product);
+  const result = await page.$$eval("#a-page", (productWidgets) => {
+    productWidgets.reduce((accum, curVal) => {
+      const priceStr = curVal.querySelector(
+        "span.a-price > span.a-offscreen"
+      ).textContent;
 
-        const priceStr = cheerioProduct(
-          "span.a-price > span.a-offscreen"
-        ).text();
+      const name = curVal.querySelector(
+        "div.a-section > h2.a-size-mini > a.a-link-normal > span.a-size-base-plus"
+      ).textContent;
 
-        const name = cheerioProduct(
-          "div.a-section > h2.a-size-mini > a.a-link-normal > span.a-size-base-plus"
-        ).text();
-
-        result.push({
-          price: priceStr.replace("$", ""),
-          name,
-        });
+      accum.push({
+        price: priceStr.replace("$", ""),
+        name,
       });
-    }
+      return accum;
+    }, []);
+  });
+  const searchPrices = await page.$$eval(
+    "div.a-row > a.a-size-base > span.a-price > span.a-offscreen",
+    (items) => items.map((item) => item.textContent)
   );
+  console.log("kkk", searchPrices);
   console.log(result);
   console.log("klsdjf");
 
