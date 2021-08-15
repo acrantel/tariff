@@ -20,24 +20,19 @@ async function searchValue(value, page) {
     await page.$eval( '#nav-search-submit-button', form => form.click() );
     await timeout(2000);
     await page.screenshot({path: 'example.png'});
+    const searchPrices = await page.$$eval('span.a-price', items => items.map( item => item.textContent));
+    for(var i = 0; i < searchPrices.length; i++) {
+        searchPrices[i] = searchPrices[i].replace('$', '');
+    }
+
+
+    console.log(searchPrices);
     // let html = await page.evaluate(() => document.body.innerHTML);
     // console.log(html);
     // await page.waitForSelector('#resultsCol');
     // const firstProduct = await page.$('a.a-link-normal.a-text-normal');
     // console.log(firstProduct);
     // await checkSearchedText(page);
-}
-
-async function checkSearchedText(page) {
-    // await page.reload();
-    let html = await page.evaluate(() => document.body.innerHTML);
-    console.log(html);
-    const $ = cheerio.load(html);
-
-    $('#twotabsearchtextbox', html).each(function() {
-        let title = $(this).val();
-        console.log(title);
-    })
 }
 
 async function runSearch() {
