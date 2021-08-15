@@ -20,19 +20,21 @@ async function searchValue(value, page) {
     await page.$eval( '#nav-search-submit-button', form => form.click() );
     await timeout(2000);
     await page.screenshot({path: 'example.png'});
-    const searchPrices = await page.$$eval('span.a-price', items => items.map( item => item.textContent));
+
+    const searchPrices = await page.$$eval('div.a-row > a.a-size-base > span.a-price > span.a-offscreen', items => items.map( item => item.textContent));
     for(var i = 0; i < searchPrices.length; i++) {
         searchPrices[i] = searchPrices[i].replace('$', '');
     }
-
-
     console.log(searchPrices);
-    // let html = await page.evaluate(() => document.body.innerHTML);
-    // console.log(html);
-    // await page.waitForSelector('#resultsCol');
-    // const firstProduct = await page.$('a.a-link-normal.a-text-normal');
-    // console.log(firstProduct);
-    // await checkSearchedText(page);
+
+    const searchProducts = await page.$$eval('div.a-section > h2.a-size-mini > a.a-link-normal > span.a-size-base-plus', items => items.map( item => item.textContent));
+    console.log(searchProducts);
+
+    console.log(searchPrices.length);
+    console.log(searchProducts.length);
+
+    // const searchLinks = await page.$$eval('span.a-price > span.a-offscreen', items => items.map( item => item.textContent));
+
 }
 
 async function runSearch() {
