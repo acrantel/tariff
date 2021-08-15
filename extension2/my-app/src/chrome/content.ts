@@ -9,7 +9,7 @@ const findKeywordInPage = (): string => {
   let maxCount = 0;
   let maxKeyword = "no keyword found";
   for (const keyword of exampleKeywords) {
-    const curCount = htmlString.split(keyword).length;
+    const curCount = htmlString.split(keyword).length - 1;
     if (curCount > maxCount) {
       maxCount = curCount;
       maxKeyword = keyword;

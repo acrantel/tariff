@@ -5,13 +5,12 @@ const queryInfo: chrome.tabs.QueryInfo = {
   active: true,
   currentWindow: true,
 };
+const requestKeywordMessage = {
+  from: Sender.Background,
+  message: getKeywordMessage,
+} as ChromeMessage;
 
 const updater = () => {
-  const requestKeywordMessage = {
-    from: Sender.Background,
-    message: getKeywordMessage,
-  } as ChromeMessage;
-
   // call content script to get keyword
   chrome.tabs &&
     chrome.tabs.query(queryInfo, (tabs) => {
@@ -30,7 +29,7 @@ const updater = () => {
         }
       });
     });
-  setTimeout(updater, 2500);
+  setTimeout(updater, 500);
 };
 updater();
 
