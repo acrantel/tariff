@@ -8,9 +8,9 @@
     "default_title": "Open the popup"
   },
   "icons": {
-    "16": "logo192.png",
-    "48": "logo192.png",
-    "128": "logo192.png"
+    "16": "heart_thing_2.png",
+    "48": "heart_thing_2.png",
+    "128": "heart_thing_2.png"
   },
   "optional_permissions": ["<all_urls>"],
   "permissions": ["activeTab"],

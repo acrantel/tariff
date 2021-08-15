@@ -101,7 +101,7 @@ const App = () => {
       <div className="footer">
         <hr />
         <span className="footer-text">
-          ({keyword}, delete this) Why did we make this extension? Click here to read about the{" "}
+          Why did we make this extension? Click here to read about the{" "}
           <a href="https://en.wikipedia.org/wiki/Pink_tax" style={{ color: "deeppink" }}>
             Pink Tax
           </a>
